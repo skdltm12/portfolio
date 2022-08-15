@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여승원 포트폴리오</title>
+    <script src="https://code.jQuery.com/jquery-latest.js"></script>
+    <script src="jquery.easing.1.3.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {letter-spacing: -.4px; list-style: none; padding: 0; margin: 0; font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden;}
+        html, body {width: 100%;}
+        #hd {width: 100%; height: 10vh; border-bottom: 1px solid #888; position: fixed;top: 0; overflow-y: hidden;}
+        #hd a {opacity: 0.6; margin: 32px 12px 24px 12px; transition-duration: 1s;}
+        #hd #hd_menu {background-image: url(/img/menu_FILL0_wght200_GRAD200_opsz48.svg); width: 48px;height: 48px; display: inline-block;float:left; margin:25px 0px 0px 40px; background-size: cover; transition-duration: 1s; margin-left: 20vh; margin-right: 30px;}
+        #hd h2 {color:#333;line-height: 10vh; padding-left: 10%; display: block; width: 300px; float: left;}
+        #hd .home_icon {background-image: url(./img/home_black_36dp.svg); width: 36px; height: 36px; display: inline-block; float:right; background-size: cover;}
+        #hd .home_icon:hover {opacity: 1; cursor: pointer;}
+        #hd .home_icon::after {content: ""; width: 0px;height: 2px; background-color: rgb(98, 98, 240); display: inline-block; position: absolute; transition-duration: 1s; opacity: 1; bottom: 0px;}
+        #hd .home_icon:hover::after {width: 36px;}
+        #hd .port_icon {background-image: url(./img/view_module_black_36dp.svg); width: 36px; height: 36px; display: inline-block; float:right; background-size: cover; margin-top: 34px;}
+        #hd .port_icon:hover {opacity: 1; cursor: pointer;}
+        #hd .port_icon::after {content: ""; width: 0px;height: 2px; background-color: rgb(98, 98, 240); display: inline-block; position: absolute; transition-duration: 1s; opacity: 1; bottom: 0px;}
+        #hd .port_icon:hover::after {width: 36px;}
+        #hd .skill_icon {background-image: url(./img/settings_suggest_black_36dp.svg); width: 36px; height: 36px; display: inline-block; float:right; background-size: cover;}
+        #hd .skill_icon:hover {opacity: 1; cursor: pointer;}
+        #hd .skill_icon::after {content: ""; width: 0px;height: 2px; background-color: rgb(98, 98, 240); display: inline-block; position: absolute; transition-duration: 1s; opacity: 1; bottom: 0px;}
+        #hd .skill_icon:hover::after {width: 36px;}
+        #hd .me_icon {background-image: url(./img/face_black_36dp.svg); width: 36px; height: 36px; display: inline-block; float:right; background-size: cover; margin-right: 30vh; margin-top: 34px;}
+        #hd .me_icon:hover {opacity: 1; cursor: pointer;}
+        #hd .me_icon::after {content: ""; width: 0px;height: 2px; background-color: rgb(98, 98, 240); display: inline-block; position: absolute; transition-duration: 1s; opacity: 1; bottom: 0px;}
+        #hd .me_icon:hover::after {width: 36px;}
+        #hd a {position: relative;}
+        .select_icon {opacity: 1 !important; }
+       
+        
+        .content {position: relative;}
+        .content_wrap{ width: 400%; position: absolute;top: 10vh;}
+        section {width: 25%; float:left; }
+        
+        .left_space {width: 10%;height: 100vh;border-right: 1px solid #333; position: fixed; transition-duration: 1.5s; top: 0; background-color: azure; left:-30vh; z-index: 999;}
+        .left_space ul {padding-top: 15vh;}
+        .left_space li {line-height: 2.6; text-align: center;}
+        .main {padding-top:10vh; width: 100%;}         
+        .imgbox {width: 700px; border-right: 1px solid #888; height: 60vh; text-align: center; float:left; margin-left: 20vh;}
+        .imgbox img{height: 400px; margin-top: 5vh;}
+        .commentbox { max-width: 700px; float:left; margin-top: 10vh;} 
+        .commentbox h3 {display: block; font-weight: 700; font-size: 30px; text-align: center; margin-bottom: 2.5vh;}
+        .commentbox p {padding-left: 8vh; line-height: 30px;}
+        .slide_btn div{background-color: rgba(0, 0, 0, 0.4); width: 50px; height: 50px; z-index:999}
+        .left_slide_btn {position: fixed; top: 45%; left:1%; background-image: url(./img/arr_m_wh_01.svg); background-size: cover;}
+        .right_slide_btn {position: fixed; top: 45%; right: 1%; background-image: url(./img/arr_m_wh_02.svg); background-size: cover;}
+        .port_list li{float:left; margin: 0 10px 0 10px;}
+        .port, .skills, .intro {margin-left: 20vh;}
+        .info_wrap {position: relative; height: 200px;}
+        .skills_list {width: 700px; float:left}
+        .info_wrap>div  {width: 700px; height: 200px; background-color: #fafafa; position: absolute; right: 30vh; opacity: 0;}
+        .skills_list li {border: 1px solid #888; border-radius: 30px; padding: 20px; display: block; width: 120px; text-align: center; height: 120px; position: relative; float:left; margin:20px; transition-duration: 0.5s;}
+        .skills_list li img {position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);}
+        .skills_list li:hover {border-color:#222}
+
+        
+    </style>
+</head>
+<body>
+    <header id="hd">
+        <a id="hd_menu"></a><h2>여승원 포트폴리오</h2>
+        <a class="me_icon"></a>
+        <a class="skill_icon"></a>
+        <a class="port_icon"></a>
+        <a class="home_icon"></a>
+        
+        
+    </header>
+    <div id="content">
+        <div class="left_space">
+            <ul>
+                <li><a>내정보</a></li>
+                <li><a>포트폴리오</a></li>
+                <li><a>기술</a></li>
+                <li><a>연락처</a></li>
+            </ul>
+        </div>
+        <div class="slide_btn">
+            <div class="left_slide_btn">                
+            </div>
+            <div class="right_slide_btn">                
+            </div>
+        </div>
+        <div class="content_wrap">
+            <section class="sec1" id="main">
+                <div class="main">
+                    <div class="imgbox">
+                        <img src="./img/bgimg.png" alt="사진1">
+                    </div>
+                    <div class="commentbox">
+                        <h3>안녕하세요. 신입 개발자 여승원 입니다.</h3>
+                        <p>1998년 3월 출생으로, 올해 25살 입니다.<br>
+                            현재 경기도 일산서구에 거주하고 있으며, 구직활동 중 입니다.<br>
+                            프로그래밍 학원 900시간 과정을 수료하였고, Java 위주로 학습 하였습니다.<br>
+                            개발 툴은 Spring Framework 및 Eclipse와 Visual Studio Code를 사용해봤으며,<br>
+                            Java 외에도 javascript, jQuery, jsp 등의 언어를 공부했습니다.<br>
+                            많은 관심 부탁드립니다.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section class="sec2">
+                <div class="port">
+                    <h2>포트폴리오</h2>                                    
+                    <div class="port_list">
+                        <ul>
+                            <li><a href=""><img src="./img/pj1.png" alt="포폴1"></a></li>
+                            <li><a href=""><img src="./img/pj2.png" alt="포폴2"></a></li>
+                            <li><a href=""><img src="./img/pj3.png" alt="포폴3"></a></li>
+                        </ul>                   
+                    </div>
+                </div>
+            </section>
+            <section class="sec3">
+                <div class="skills">
+                    <h2>기술</h2>                                    
+                    <div class="skills_list">
+                        <ul>
+                            <li><img src="./img/skill1.png" alt="기술1"></li>
+                            <li><img src="./img/skill2.png" alt="기술2"></li>
+                            <li><img src="./img/111.png" alt="기술3"></li>
+                        </ul>
+                        <ul>
+                            <li><img src="./img/222.png" alt="기술4"></li>
+                            <li><img src="./img/skill5.png" alt="기술5"></li>
+                            <li><img src="./img/333.png" alt="기술6"></li>
+                        </ul>                        
+                            <li><img src="./img/jsp.png" alt="기술7"></li>
+                            <li><img src="./img/5.png" alt="기술8"></li>
+                            <li><img src="./img/mvc.png" alt="기술9"></li>
+                        </ul>
+                    </div>      
+                        <div class="info_wrap">
+                            <div class="skill_info">
+                                <h2>Java</h2>
+                                <p>변수와 타입, 연산자, 조건문과 반복문, 클래스와 상속, 인터페이스와 추상화, 예외처리, 기본 API, 스레드, 제네릭, 람다식, 컬렉션 프레임워크</p>
+                            </div>
+                            <div class="skill_info2">
+                                <h2>Spring</h2>
+                                <p>Controller, Service, DAO, View, MyBatis, Project Configuration, Context Configure, Mapper, Dependensy Inject, Aspect Oriented Programming, Inversion of Control, Junit, Restful API, AJAX/JSON, Transaction and Logging, Intercepter, Maven/Gradle Build, Deploy</p>
+                            </div>
+                            <div class="skill_info3">
+                                <h2>HTML/CSS</h2>
+                                <p>폰트 연결, 파비콘, 문서 메타, 오픈그래프, 제목 및 문단 요소, 시멘틱 요소, 메뉴 및 목록 요소, 이미지 및 멀티미디어 요소, 폼 요소, 선택자, 스타일 속성, 레이아웃 설정 및 구현, 애니메이션 구현, 웹 표준 및 접근성</p>
+                            </div>
+                            <div class="skill_info4">
+                                <h2>jQuery/Javascript</h2>
+                                <p>DOM 선택, DOM 탐색, DOM 조작, DOM 이벤트, DOM 효과, 플러그인 제작, Window, Document, History, Location, Screen, Navigator, Timer, AJAX/JSON, UI 제작 및 구현, 지도 API, 주소 API, GPS 및 날씨 API, 차트 API 등</p>
+                            </div>
+                            <div class="skill_info5">
+                                <h2>Oracle</h2>
+                                <p>데이터베이스 환경구축, 테이블/시퀀스/뷰 생성 및 제거와 변경, 데이터 무결성 제약조건 수립 및 설정, CRUD(데이터 추가/검색/변경/삭제), 조인, 이중쿼리, 집합연산, 집계, 트랜잭션 처리, 트리거 작업, 프로시저/함수 생성 및 실행, 권한 작업, 백업 및 복구, SQLP/PL, SQL Plus, SQL Developer, Eclipse DataSource</p>
+                            </div>
+                            <div class="skill_info6">
+                                <h2>MariaDB/MySQL</h2>
+                                <p>데이터베이스 구축, 사용자 관리, 권한 작업, 테이블/인덱스 생성 및 제거와 변경, 기본키/외래키 등 제약조건 설정, 레코드 추가/제거/검색/삭제, 필드 연결, 서브쿼리, 그룹화, 웹 연동, 마이그레이션, 테이블 역설계</p>
+                            </div>
+                            <div class="skill_info7">
+                                <h2>JSP</h2>
+                                <p>JSP 플랫폼 구축, 표현식, 스크립트릿, SCOPE, EL, JSTL, 액션 태그, 전역 변수, 요청 객체, 응답 객체, 세션 객체, 애플리케이션 객체, 출력 객체, 페이지 컨텍스트 객체, 데이터 전송 방식</p>
+                            </div>
+                            <div class="skill_info8">
+                                <h2>Servlets</h2>
+                                <p>HttpServlet, HttpServletRequest, HttpServletResponse, Session, PrintWriter, applicationContext, init, Service, Destroy, doPost, doGet, Servlet Scope, JAVA Build</p>
+                            </div>
+                            <div class="skill_info9">
+                                <h2>MVC</h2>
+                                <p>Controller, Model, View, JDBC, VO(DTO), DAO, Page Modularity, Member Module, Board Module, Payment Module, Databank Module, Product Module, Email Module, File Control, WAR Deploy</p>
+                            </div>
+                        </div>
+                </div>                
+            </section>
+            <section class="sec4">
+                <div class="">
+                    <h2>연락처</h2>                                    
+                    <div class="intro">
+                  
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <footer id="ft">
+
+    </footer>
+    <script>
+        $(function(){
+            var w_width = $(window).width();
+            window.onload = function() {
+			setTimeout (function () {
+				scrollTo(0,0);
+			},100);
+		}
+            $("#hd_menu").mouseenter(function(){
+                $("#hd_menu").css("cursor","pointer");
+            });
+            $("#hd_menu").click(function(){
+                $(".left_space").css("left","0");
+            });
+            $(".left_space").mouseleave(function(){
+                $(".left_space").css("left","-30vh");
+            });
+            $(".slide_btn div").mouseenter(function(){
+                $(this).css("backgroundColor","rgba(0,0,0,0.7)");
+                $(this).mouseleave(function(){
+                    $(this).css("backgroundColor", "rgba(0,0,0,0.4)")
+                });
+            });
+            $(".right_slide_btn").click(function(){
+                var widths = parseInt($(".content_wrap").css("left"));
+                var max_width = w_width*3*-1;                     
+                if(widths > max_width){
+                    $(".content_wrap").not(":animated").animate({"left":"-="+w_width}, 1500, function(){
+                        nextbtn();
+                    });
+                    
+                }
+            function nextbtn(){
+                var home = $(".home_icon").hasClass("select_icon");
+                var port = $(".port_icon").hasClass("select_icon");
+                var skill = $(".skill_icon").hasClass("select_icon");
+                var me = $(".me_icon").hasClass("select_icon");
+                if(home){
+                    $(".port_icon").addClass("select_icon");
+                    $(".home_icon").removeClass("select_icon");
+                }else if(port){
+                    $(".skill_icon").addClass("select_icon");
+                    $(".port_icon").removeClass("select_icon");
+                }else if(skill){
+                    $(".me_icon").addClass("select_icon");
+                    $(".skill_icon").removeClass("select_icon");                   
+                }
+            }
+            });
+            $(".left_slide_btn").click(function(){
+                var widths = parseInt($(".content_wrap").css("left"));
+                var max_width = w_width*3*-1;                     
+                if(widths != 0){
+                    $(".content_wrap").not(":animated").animate({"left":"+="+w_width}, 1500, function(){
+                        prevbtn();
+                    });                    
+                }
+            });
+            function prevbtn(){
+                var port = $(".port_icon").hasClass("select_icon");
+                var skill = $(".skill_icon").hasClass("select_icon");
+                var me = $(".me_icon").hasClass("select_icon");
+                if(port){
+                    $(".home_icon").addClass("select_icon");
+                    $(".port_icon").removeClass("select_icon");
+                }else if(skill){
+                    $(".port_icon").addClass("select_icon");
+                    $(".skill_icon").removeClass("select_icon");
+                }else if(me){
+                    $(".skill_icon").addClass("select_icon");
+                    $(".me_icon").removeClass("select_icon");                  
+                }
+            }
+
+            $(".home_icon").click(function(){
+                    $(this).addClass("select_icon");
+                    $(".port_icon, .skill_icon, .me_icon").removeClass("select_icon");
+                    $(".content_wrap").animate({"left":"0px"}, 1500);
+                }).click();
+           
+            $(".port_icon").click(function(){
+                     $(this).addClass("select_icon");
+                     $(".home_icon, .skill_icon, .me_icon").removeClass("select_icon");
+                    $(".content_wrap").animate({"left":"-"+w_width}, 1500);
+                });
+          
+            $(".skill_icon").click(function(){                
+                    $(this).addClass("select_icon");
+                     $(".port_icon, .home_icon, .me_icon").removeClass("select_icon");
+                       $(".content_wrap").animate({"left":"-"+w_width*2}, 1500);
+                });
+   
+            $(".me_icon").click(function(){
+                      $(this).addClass("select_icon");
+                      $(".port_icon, .skill_icon, .home_icon").removeClass("select_icon");
+                    $(".content_wrap").animate({"left":"-"+w_width*3}, 1500);
+                });            
+    })
+
+    </script>
+</body>
+</html>
